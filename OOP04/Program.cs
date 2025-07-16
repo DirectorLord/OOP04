@@ -6,43 +6,43 @@ namespace OOP04
     {
         #region Part01
         #region Question01
-
+        //a) To provide a way to implement multiple inheritance
         #endregion
 
         #region Question02
-
+        //b) protected
         #endregion
 
         #region Question03
-
+        //c) Only if they are static
         #endregion
 
         #region Question04
-
+        //b) Yes, interfaces can inherit from multiple interfaces
         #endregion
 
         #region Question05
-
+        //c) extends
         #endregion
 
         #region Question06
-
+        //c) Only if the interface is sealed
         #endregion
 
         #region Question07
-
+        //b) No, all members are implicitly public
         #endregion
 
         #region Question08
-
+        //b) To provide a clear separation between interface and class members
         #endregion
 
         #region Question09
-
+        //c) Yes, but only if the interface is sealed
         #endregion
 
         #region Question10
-
+        //b) By using the "extends" keyword
         #endregion
         #endregion
 
@@ -125,7 +125,40 @@ namespace OOP04
         #endregion
 
         #region Question03
-
+        //copy paste this i think
+        /*
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"Email sent to: {recipient}: {message}");
+            }
+         */
+        public interface INotificationService
+        {
+            void SendNotification(string recipient, string message);
+        }
+        //email
+        public class EmailNotificationService : INotificationService
+        {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"Email sent to: {recipient}: {message}");
+            }
+        }
+        //sms
+        public class SmsNotificationService : INotificationService {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"SMS sent to: {recipient}: {message}");
+            }
+        }
+        //push?
+        public class PushNotificationService : INotificationService
+        {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"SMS sent to: {recipient}: {message}");
+            }
+        }
         #endregion
         #endregion
         public static void Main(string[] args)
@@ -146,6 +179,16 @@ namespace OOP04
             bool isAuthenticated = authService.AuthenticateUser("user", "password");
             bool isAuthorized = authService.AuthorizeUser("user", "admin");
             Console.WriteLine($"Authentication: {isAuthenticated}, Authorized: {isAuthorized}");
+            #endregion
+
+            #region Question03
+            EmailNotificationService emailService = new EmailNotificationService();
+            SmsNotificationService smsNotificationService = new SmsNotificationService();
+            PushNotificationService pushNotificationService = new PushNotificationService();
+
+            emailService.SendNotification("user@gmail.com", "hello :)");
+            smsNotificationService.SendNotification("015255155477", "hello :)");
+            pushNotificationService.SendNotification("user2468", "hello :)");
             #endregion
             #endregion
         }
