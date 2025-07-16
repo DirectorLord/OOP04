@@ -41,7 +41,7 @@ namespace OOP04
 
         #endregion
 
-        #region Question010
+        #region Question10
 
         #endregion
         #endregion
@@ -91,6 +91,43 @@ namespace OOP04
                 Console.WriteLine($"The width of the rectangle is: {Width}, the length of the rectangle is: {Length}, and the area is: {area}");
             }
         }
+        #endregion
+
+        #region Question02
+        //lets see if i can copy paste the shape interface and edit it here
+        public interface IAuthenticationService
+        {
+            bool AuthenticateUser(string username, string password);
+            bool AuthorizeUser(string username, string role);
+        }
+        //implementation part
+        public class BasicAuthenticationService : IAuthenticationService
+        {
+            public bool AuthenticateUser(string username, string password)
+            {
+                // cheap authentication methods
+                if (username != null && password != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool AuthorizeUser(string username, string role)
+            {
+                if (role != null && username != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        #endregion
+
+        #region Question03
+
+        #endregion
+        #endregion
         public static void Main(string[] args)
         {
             #region part02
@@ -102,6 +139,13 @@ namespace OOP04
             // Call the method directly on the correct types
             circle.DisplayShapeInfo();
             rectangle.DisplayShapeInfo();
+            #endregion
+
+            #region Question02
+            BasicAuthenticationService authService = new BasicAuthenticationService();
+            bool isAuthenticated = authService.AuthenticateUser("user", "password");
+            bool isAuthorized = authService.AuthorizeUser("user", "admin");
+            Console.WriteLine($"Authentication: {isAuthenticated}, Authorized: {isAuthorized}");
             #endregion
             #endregion
         }
